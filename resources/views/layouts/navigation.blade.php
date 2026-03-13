@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-8 w-auto fill-current text-gray-600" />
+                        <img src="{{ asset('img/hstu-logo.png') }}" alt="HSTU logo" class="block h-12 w-auto">
                     </a>
                 </div>
 
