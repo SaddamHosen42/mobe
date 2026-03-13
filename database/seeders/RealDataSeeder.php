@@ -18,7 +18,7 @@ class RealDataSeeder extends Seeder
         DB::table('study_program')->insert([
             'id'=>1,
             'faculty_id'=>1,
-            'name'=>'Teknologi Informasi'
+              'name'=>'Information Technology'
         ]);
     }
 }

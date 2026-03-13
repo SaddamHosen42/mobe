@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>mobe | Outcome Based Education</title>
+    <title>HSTU-OBE | Outcome Based Education</title>
 
     <!-- Fonts -->
     <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -26,7 +26,7 @@
             <a class="flex items-center text-indigo-400 no-underline hover:no-underline font-bold text-2xl lg:text-4xl"
                href="{{ route('welcome') }}">
                 <x-application-logo class="block h-8 pr-2 w-auto fill-current" />
-                <span class="bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-pink-500 to-purple-500">mobe</span>
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-pink-500 to-purple-500">HSTU-OBE</span>
             </a>
 
             <div class="flex w-1/2 justify-end content-center">
@@ -43,10 +43,10 @@
         <!--Left Col-->
         <div class="flex flex-col w-full xl:w-2/5 justify-center lg:items-start overflow-y-hidden">
             <h1 class="my-4 text-3xl md:text-5xl text-white opacity-75 font-bold leading-tight text-center md:text-left">
-                Welcome to <span class="text-indigo-400">mobe</span>.
+                Welcome to <span class="text-indigo-400">HSTU-OBE</span>.
             </h1>
             <p class="leading-normal text-gray-400 text-base md:text-2xl mb-8 text-center md:text-left">
-                mobe is an application for managing the student's grades based on Outcome-Based Education (OBE) grading system.
+                HSTU-OBE is an application for managing the student's grades based on Outcome-Based Education (OBE) grading system.
             </p>
 
             <a href="{{ route('register') }}" class="btn btn-accent space-x-2">
