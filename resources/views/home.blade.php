@@ -13,10 +13,11 @@
                             <div class="flex items-start gap-4">
                                 <div class="h-24 w-24 shrink-0 rounded-3xl bg-gradient-to-br from-cyan-500 to-sky-600 p-[3px] shadow-lg shadow-cyan-200/60">
                                     <div class="h-full w-full rounded-[1.1rem] bg-white p-1">
-                                        <img src="https://avatars.dicebear.com/api/initials/{{ $user->name }}.svg"
+                                        <img src="{{ $user->profile_photo_url }}"
                                              width="94"
                                              height="94"
                                              alt="{{ $user->name }}"
+                                            onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22256%22 height=%22256%22 viewBox=%220 0 256 256%22%3E%3Crect width=%22100%25%22 height=%22100%25%22 fill=%22%23E5E7EB%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22Arial,%20sans-serif%22 font-size=%2290%22 fill=%22%23374151%22%3E{{ strtoupper(substr($user->name, 0, 1)) }}%3C/text%3E%3C/svg%3E';"
                                              class="h-full w-full rounded-xl object-cover">
                                     </div>
                                 </div>

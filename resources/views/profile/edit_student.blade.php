@@ -11,7 +11,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 bg-white border-b border-gray-200">
-                <form method="POST" action="{{ route('profile.update') }}">
+                <form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data">
                     @csrf
                     @method('patch')
 
@@ -31,6 +31,14 @@
                         <input type="text" name="student_id_number" placeholder="Your Student ID Number"
                                class="input input-bordered w-full max-w-xs" value="{{ old('student_id_number', $studentData->student_id_number ?? "") }}"/>
                         <x-input-error :messages="$errors->get('student_id_number')" class="mt-2"/>
+                    </div>
+
+                    <div class="form-control w-full p-3">
+                        <label class="label">
+                            <span class="label-text">Profile Photo</span>
+                        </label>
+                        <input type="file" name="profile_photo" class="file-input file-input-bordered w-full max-w-xs" accept=".png,.jpg,.jpeg,.webp"/>
+                        <x-input-error :messages="$errors->get('profile_photo')" class="mt-2"/>
                     </div>
 
                     <div class="mt-4 p-4 space-x-2">

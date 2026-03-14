@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -21,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'profile_photo_path',
         'role',
     ];
 
@@ -42,6 +44,32 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected $appends = [
+        'profile_photo_url',
+    ];
+
+    public function getProfilePhotoUrlAttribute()
+    {
+        if ($this->profile_photo_path) {
+            return '/storage/' . ltrim($this->profile_photo_path, '/');
+        }
+
+        $parts = preg_split('/\s+/', trim((string) $this->name));
+        $initials = collect($parts)
+            ->filter()
+            ->take(2)
+            ->map(fn ($part) => Str::upper(Str::substr($part, 0, 1)))
+            ->implode('');
+
+        $svg = '<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">'
+            . '<rect width="100%" height="100%" fill="#E5E7EB"/>'
+            . '<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Arial, sans-serif" font-size="90" fill="#374151">'
+            . e($initials ?: 'U')
+            . '</text></svg>';
+
+        return 'data:image/svg+xml;utf8,' . rawurlencode($svg);
+    }
 
     public function joinedClasses()
     {

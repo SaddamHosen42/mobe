@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -99,6 +100,7 @@ class ProfileController extends Controller
             $validated = $request->validate([
                 'name' => 'required|string',
                 'student_id_number' => 'required|numeric',
+                'profile_photo' => 'nullable|image|mimes:jpeg,jpg,png,webp|max:5120',
             ]);
 
             $studentData = $user->studentData;
@@ -111,10 +113,20 @@ class ProfileController extends Controller
         } else {
             $validated = $request->validate([
                 'name' => 'required|string',
+                'profile_photo' => 'nullable|image|mimes:jpeg,jpg,png,webp|max:5120',
             ]);
         }
 
         $user->name = $validated['name'];
+
+        if ($request->hasFile('profile_photo')) {
+            if ($user->profile_photo_path) {
+                Storage::disk('public')->delete($user->profile_photo_path);
+            }
+
+            $user->profile_photo_path = $request->file('profile_photo')->store('profile-photos', 'public');
+        }
+
         $user->save();
 
         return redirect()->route('profile.show');
