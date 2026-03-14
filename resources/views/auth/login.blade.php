@@ -18,8 +18,8 @@
             <a href="{{ route('welcome') }}" class="flex items-center gap-3">
                 <img src="{{ asset('img/hstu-logo.png') }}" alt="HSTU Logo" class="w-12 h-12 object-contain drop-shadow-lg">
                 <div>
-                    <p class="text-white font-bold text-sm leading-tight">HSTU</p>
-                    <p class="text-blue-200 text-xs leading-tight">OBE Management</p>
+                    <p class="text-white font-bold text-lg leading-tight">HSTU</p>
+                    <p class="text-blue-200 text-sm leading-tight">OBE Management</p>
                 </div>
             </a>
         </div>
@@ -182,6 +182,15 @@
                     Sign in
                 </button>
             </form>
+
+            @if (Route::has('register'))
+            <p class="mt-5 text-center text-sm text-gray-600">
+                Don't have an account?
+                <a href="{{ route('register') }}" class="font-semibold text-blue-600 hover:text-blue-800 hover:underline transition">
+                    Please register
+                </a>
+            </p>
+            @endif
 
             {{-- Footer --}}
             <p class="mt-8 text-center text-xs text-gray-400">
