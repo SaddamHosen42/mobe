@@ -16,10 +16,10 @@
 
                     <div class="form-control w-full p-3">
                         <label class="label">
-                            <span class="label-text">Intended Learning Outcome (ILO)</span>
+                            <span class="label-text">Program Learning Outcome (PLO)</span>
                         </label>
                         <select class="select select-bordered w-full max-w-xs" name="ilo_id">
-                            <option value="">Choose the ILO</option>
+                            <option value="">Choose the PLO</option>
                             @foreach ($ilos as $ilo)
                                 <option
                                     value="{{ $ilo->id }}" {{ (old("ilo_id") == $ilo->id ? "selected":"") }}>{{ $ilo->code." - ".$ilo->description }}</option>

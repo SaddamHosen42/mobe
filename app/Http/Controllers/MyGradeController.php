@@ -91,7 +91,7 @@ class MyGradeController extends Controller
             $clo->maxPoint = $aggregatedCriteriaMaxPointForLLOs->sum('criterias_sum_max_point');
         }
 
-        // ILOs
+        // PLOs
         $intendedLearningOutcomes = $courseClass->syllabus->intendedLearningOutcomes()->get();
         foreach ($intendedLearningOutcomes as $ilo){
             $ilo->collectedPoints = $studentGradeDetails->filter(function ($studentGradeDetail) use ($ilo) {

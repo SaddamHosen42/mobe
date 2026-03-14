@@ -187,7 +187,7 @@
         <div class="pb-2">
             <div class="flex flex-row justify-between mb-3 sm:px-0 -mr-2 sm:-mr-3">
                 <h2 class="text-xl font-extrabold px-2 py-1">
-                    Intended Learning Outcome (ILO) Achievement
+                    Program Learning Outcome (PLO) Achievement
                 </h2>
             </div>
             <div class="pb-4">
@@ -200,7 +200,7 @@
                                     No
                                 </th>
                                 <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate">
-                                    Intended Learning Outcome (ILO)
+                                    Program Learning Outcome (PLO)
                                 </th>
                                 <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-24">
                                     Collected Points
@@ -233,7 +233,7 @@
                 @else
                     <div class="w-full h-full overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="bg-white p-5 shadow-sm rounded-sm text-center">
-                            <p class="text-gray-500">No ILO achievement found.</p>
+                            <p class="text-gray-500">No PLO achievement found.</p>
                         </div>
                     </div>
                 @endif

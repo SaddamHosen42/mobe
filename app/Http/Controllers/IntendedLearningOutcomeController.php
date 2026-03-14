@@ -60,7 +60,7 @@ class IntendedLearningOutcomeController extends Controller
             'code' => 'nullable|string|max:255',
             'description' => 'required|string',
         ]);
-        // get new positionn for new ilo
+        // get new position for new plo
         $newPosition = $syllabus->intendedLearningOutcomes()->max('position') + 1;
         $validateData['position'] = $newPosition;
 
