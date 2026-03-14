@@ -102,7 +102,7 @@ $assignmentPlans = $syllabus->assignmentPlans;
         <div class="pt-5">
             <div class="flex flex-row justify-between mb-3 sm:px-0 -mr-2 sm:-mr-3">
                 <h2 class="text-xl font-extrabold px-2 py-1">
-                    Intended Learning Outcome (ILO)
+                    Program Learning Outcome (PLO)
                 </h2>
                 @canany(['is-teacher','is-admin'])
                     <div class="order-5 sm:order-6 mr-2 sm:mr-3">
