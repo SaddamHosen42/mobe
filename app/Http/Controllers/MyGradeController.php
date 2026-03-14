@@ -138,22 +138,26 @@ class MyGradeController extends Controller
 
     public function _getLetterGrade($point)
     {
-        if ($point > 80) {
+        if ($point >= 80) {
+            return 'A+';
+        } elseif ($point >= 75) {
             return 'A';
-        } elseif ($point > 75) {
+        } elseif ($point >= 70) {
+            return 'A-';
+        } elseif ($point >= 65) {
             return 'B+';
-        } elseif ($point > 69) {
+        } elseif ($point >= 60) {
             return 'B';
-        } elseif ($point > 60) {
+        } elseif ($point >= 55) {
+            return 'B-';
+        } elseif ($point >= 50) {
             return 'C+';
-        } elseif ($point > 55) {
+        } elseif ($point >= 45) {
             return 'C';
-        } elseif ($point > 50) {
-            return 'D+';
-        } elseif ($point > 44) {
+        } elseif ($point >= 40) {
             return 'D';
         } else {
-            return 'E';
+            return 'F';
         }
     }
 }
