@@ -30,14 +30,14 @@
                                     <div class="flex flex-wrap space-x-4">
                                         <a href="{{ route('rubrics.show', $rubric) }}" class="text-blue-700 hover:text-blue-500">Detail</a>
                                         <a href="{{ route('rubrics.edit', $rubric) }}"
-                                           class="text-blue-500">Edit</a>
+                                           class="text-blue-500"><i class="fa-solid fa-pen-to-square"></i></a>
                                         <form method="POST" action="{{ route('rubrics.destroy', $rubric) }}">
                                             @csrf
                                             @method('delete')
 
                                             <button class="text-red-500"
                                                     onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
-                                                {{ __('Delete') }}
+                                                <i class="fa-solid fa-trash"></i>
                                             </button>
                                         </form>
 

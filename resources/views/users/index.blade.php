@@ -121,14 +121,14 @@ $rows = collect($users)->all()["data"] ?? [];
                                 <td
                                     class="text-gray-600 px-6 py-3 border-t border-gray-100 whitespace-nowrap">
                                     <div class="flex flex-wrap space-x-4">
-                                        <a :href="`users/${row.id}/edit`" class="text-blue-500">Edit</a>
+                                        <a :href="`users/${row.id}/edit`" class="text-blue-500"><i class="fa-solid fa-pen-to-square"></i></a>
                                         <form method="POST" :action="`users/${row.id}`">
                                             @csrf
                                             @method('delete')
 
                                             <button class="text-red-500"
                                                     onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
-                                                {{ __('Delete') }}
+                                                <i class="fa-solid fa-trash"></i>
                                             </button>
                                         </form>
 

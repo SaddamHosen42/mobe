@@ -145,7 +145,7 @@ $assignmentPlans = $syllabus->assignmentPlans;
                                             class="text-gray-600 px-6 py-3 border-t border-gray-100">
                                             <div class="flex flex-wrap space-x-4">
                                                 <a href="{{ route('syllabi.ilos.edit', [$syllabus, $ilo]) }}"
-                                                   class="text-blue-500"><i class="fa fa-edit"></i></a>
+                                                   class="text-blue-500"><i class="fa-solid fa-pen-to-square"></i></a>
                                                 <form method="POST"
                                                       action="{{ route('syllabi.ilos.destroy', [$syllabus, $ilo]) }}">
                                                     @csrf
@@ -153,7 +153,7 @@ $assignmentPlans = $syllabus->assignmentPlans;
 
                                                     <button class="text-red-500"
                                                             onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
-                                                        <i class="fa fa-trash"></i>
+                                                        <i class="fa-solid fa-trash"></i>
                                                     </button>
                                                 </form>
                                             </div>
@@ -224,7 +224,7 @@ $assignmentPlans = $syllabus->assignmentPlans;
                                         <td class="text-gray-600 px-6 py-3 border-t border-gray-100">
                                             <div class="flex flex-wrap space-x-4">
                                                 <a href="{{ route('syllabi.clos.edit', [$syllabus, $clo]) }}"
-                                                   class="text-blue-500"><i class="fa fa-edit"></i></a>
+                                                   class="text-blue-500"><i class="fa-solid fa-pen-to-square"></i></a>
                                                 <form method="POST"
                                                       action="{{ route('syllabi.clos.destroy', [$syllabus, $clo]) }}">
                                                     @csrf
@@ -232,7 +232,7 @@ $assignmentPlans = $syllabus->assignmentPlans;
 
                                                     <button class="text-red-500"
                                                             onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
-                                                        <i class="fa fa-trash"></i>
+                                                        <i class="fa-solid fa-trash"></i>
                                                     </button>
                                                 </form>
                                             </div>
@@ -303,7 +303,7 @@ $assignmentPlans = $syllabus->assignmentPlans;
                                         <td class="text-gray-600 px-6 py-3 border-t border-gray-100">
                                             <div class="flex flex-wrap space-x-4">
                                                 <a href="{{ route('syllabi.llos.edit', [$syllabus, $llo]) }}"
-                                                   class="text-blue-500"><i class="fa fa-edit"></i></a>
+                                                   class="text-blue-500"><i class="fa-solid fa-pen-to-square"></i></a>
                                                 <form method="POST"
                                                       action="{{ route('syllabi.llos.destroy', [$syllabus, $llo]) }}">
                                                     @csrf
@@ -311,7 +311,7 @@ $assignmentPlans = $syllabus->assignmentPlans;
 
                                                     <button class="text-red-500"
                                                             onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
-                                                        <i class="fa fa-trash"></i>
+                                                        <i class="fa-solid fa-trash"></i>
                                                     </button>
                                                 </form>
                                             </div>
@@ -387,7 +387,7 @@ $assignmentPlans = $syllabus->assignmentPlans;
                                         <td class="text-gray-600 px-6 py-3 border-t border-gray-100">
                                             <div class="flex flex-wrap space-x-4">
                                                 <a href="{{ route('syllabi.learning-plans.edit', [$syllabus, $learningPlan]) }}"
-                                                   class="text-blue-500"><i class="fa fa-edit"></i></a>
+                                                   class="text-blue-500"><i class="fa-solid fa-pen-to-square"></i></a>
                                                 <form method="POST"
                                                       action="{{ route('syllabi.learning-plans.destroy', [$syllabus, $learningPlan]) }}">
                                                     @csrf
@@ -395,7 +395,7 @@ $assignmentPlans = $syllabus->assignmentPlans;
 
                                                     <button class="text-red-500"
                                                             onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
-                                                        <i class="fa fa-trash"></i>
+                                                        <i class="fa-solid fa-trash"></i>
                                                     </button>
                                                 </form>
                                             </div>
@@ -449,7 +449,7 @@ $assignmentPlans = $syllabus->assignmentPlans;
                                     <div class="flex flex-row justify-end gap-3 pr-2">
                                         <div class="tooltip tooltip-left" data-tip="Edit Assignment Plan">
                                             <a href="{{ route('syllabi.assignment-plans.edit', [$syllabus, $assignmentPlan]) }}"
-                                               class="text-blue-500"><i class="fa fa-edit"></i></a>
+                                               class="text-blue-500"><i class="fa-solid fa-pen-to-square"></i></a>
                                         </div>
                                         <form method="POST"
                                               action="{{ route('syllabi.assignment-plans.destroy', [$syllabus, $assignmentPlan]) }}">
@@ -458,7 +458,7 @@ $assignmentPlans = $syllabus->assignmentPlans;
                                             <div class="tooltip tooltip-left" data-tip="Delete Assignment Plan">
                                                 <button class="text-red-500"
                                                         onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
-                                                    <i class="fa fa-trash"></i>
+                                                    <i class="fa-solid fa-trash"></i>
                                                 </button>
                                             </div>
                                         </form>
@@ -628,7 +628,7 @@ $assignmentPlans = $syllabus->assignmentPlans;
                                                                 class="text-gray-600 px-6 py-3 border-t border-gray-100">
                                                                 <div class="flex flex-wrap space-x-4">
                                                                     <a href="{{ route('syllabi.assignment-plans.assignment-plan-tasks.edit', [$syllabus, $assignmentPlan, $assignmentPlanTask]) }}"
-                                                                       class="text-blue-500"><i class="fa fa-edit"></i></a>
+                                                                       class="text-blue-500"><i class="fa-solid fa-pen-to-square"></i></a>
                                                                     <form method="POST"
                                                                           action="{{ route('syllabi.assignment-plans.assignment-plan-tasks.destroy', [$syllabus, $assignmentPlan, $assignmentPlanTask]) }}">
                                                                         @csrf
@@ -636,7 +636,7 @@ $assignmentPlans = $syllabus->assignmentPlans;
 
                                                                         <button class="text-red-500"
                                                                                 onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
-                                                                            <i class="fa fa-trash"></i>
+                                                                            <i class="fa-solid fa-trash"></i>
                                                                         </button>
                                                                     </form>
                                                                 </div>
