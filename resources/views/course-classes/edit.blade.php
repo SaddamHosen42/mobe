@@ -45,7 +45,8 @@
                         <label class="label">
                             <span class="label-text">Thumbnail Image</span>
                         </label>
-                        <input type="file" name="thumbnail_img" class="block mt-4">
+                        <input type="file" name="thumbnail_img" class="block mt-4" accept=".png,.jpg,.jpeg,.webp"/>
+                        <p class="text-sm text-gray-500 mt-1">Accepted formats: <strong>JPG, JPEG, PNG, WEBP</strong> &mdash; Max size: <strong>2MB</strong> &mdash; Recommended resolution: <strong>1280&times;720px (16:9)</strong></p>
                         <x-input-error :messages="$errors->get('thumbnail_img')" class="mt-2"/>
                     </div>
 

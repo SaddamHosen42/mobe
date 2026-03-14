@@ -20,7 +20,7 @@
                         <div class="m-2 text-center">
                             <div class="avatar">
                                 <div class="w-36 mask mask-squircle">
-                                    <img src="https://avatars.dicebear.com/api/initials/{{ $user->name }}.svg"/>
+                                    <img src="{{ $user->profile_photo_url }}" alt="{{ $user->name }} profile photo"/>
                                 </div>
                             </div>
                         </div>

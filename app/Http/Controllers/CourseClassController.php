@@ -81,7 +81,7 @@ class CourseClassController extends Controller
             'name' => 'required|string',
             'course_id' => 'required|integer',
             'syllabus_id' => 'required|integer',
-            'thumbnail_img' => 'nullable|image|mimes:png,jpg,jpeg,svg',
+            'thumbnail_img' => 'nullable|image|mimes:png,jpg,jpeg,webp|max:2048',
         ]);
 
         $courseClass = new CourseClass();
@@ -160,7 +160,7 @@ class CourseClassController extends Controller
         $validateData = $request->validate([
             'name' => 'required|string',
             'course_id' => 'required|integer',
-            'thumbnail_img' => 'nullable|image|mimes:png,jpg,jpeg,svg',
+            'thumbnail_img' => 'nullable|image|mimes:png,jpg,jpeg,webp|max:2048',
         ]);
         if ($request->hasFile('thumbnail_img')) {
             $validateData['thumbnail_img'] = $request->file('thumbnail_img')->store('public/thumbnail');
