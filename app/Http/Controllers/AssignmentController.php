@@ -153,8 +153,7 @@ class AssignmentController extends Controller
                 $studentGradeDetails = $studentGrade->studentGradeDetails;
                 if ($studentGradeDetails->isNotEmpty()) {
                     $assignment->totalCollectedPoint = $studentGradeDetails->sum('criteriaLevel.point');
-                    $assignmentCriterias = $studentGrade->assignment->assignmentPlan->rubric->criterias;
-                    $assignment->totalCriteriaPoint = $assignmentCriterias->sum('max_point');
+                    $assignment->totalCriteriaPoint = $assignment->assignmentPlan->assignmentPlanTasks->sum('criteria.max_point');
 
                     foreach ($assignment->assignmentPlan->assignmentPlanTasks as $assignmentPlanTask) {
                         $assignmentPlanTask->criteria->criteriaLevels->each(function ($criteriaLevel) use ($studentGradeDetails) {
