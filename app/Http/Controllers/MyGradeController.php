@@ -21,6 +21,18 @@ class MyGradeController extends Controller
             ->where('student_user_id', $user->id)
             ->get();
 
+        // Get total max points per class by summing max_point per assignment plan task
+        // (joining through student_grades ensures we only count graded assignments)
+        $allMaxPointsForCurrentUser = StudentGrade::select('assignments.course_class_id',
+            DB::raw('SUM(criterias.max_point) as max_point'))
+            ->join('assignments', 'student_grades.assignment_id', '=', 'assignments.id')
+            ->join('assignment_plans', 'assignments.assignment_plan_id', '=', 'assignment_plans.id')
+            ->join('assignment_plan_tasks', 'assignment_plan_tasks.assignment_plan_id', '=', 'assignment_plans.id')
+            ->join('criterias', 'criterias.id', '=', 'assignment_plan_tasks.criteria_id')
+            ->groupBy('assignments.course_class_id')
+            ->where('student_user_id', $user->id)
+            ->get();
+
         $userClasses = $user->joinedClasses()->get();
         foreach ($userClasses as $userClass){
             $courseAssignmentGrades = $allGradesForCurrentUser->filter(function ($grade) use ($userClass) {
@@ -28,8 +40,14 @@ class MyGradeController extends Controller
             });
             $gradedAssignmentCount = $courseAssignmentGrades->count();
             $totalAssignmentCount = $userClass->assignments()->count();
-            $userClass->gradingProgress = $gradedAssignmentCount / $totalAssignmentCount * 100;
-            $userClass->grade = $courseAssignmentGrades->sum('point');
+            $userClass->gradingProgress = $totalAssignmentCount > 0
+                ? round($gradedAssignmentCount / $totalAssignmentCount * 100, 2)
+                : 0;
+
+            $totalCollected = $courseAssignmentGrades->sum('point');
+            $maxPointRecord = $allMaxPointsForCurrentUser->firstWhere('course_class_id', $userClass->id);
+            $totalMax = $maxPointRecord ? $maxPointRecord->max_point : 0;
+            $userClass->grade = $totalMax > 0 ? round($totalCollected / $totalMax * 100, 2) : 0;
             $userClass->letterGrade = $this->_getLetterGrade($userClass->grade);
         }
 
