@@ -61,7 +61,7 @@ class FakeDataSeeder extends Seeder
                                     "role" => "teacher",
                                 ]);
 
-                                // Create Syllabus, ILO, CLO, and LLO for each course
+                                // Create Syllabus, PLO, CLO, and LLO for each course
                                 Course::factory(1)
                                     ->create([
                                         "study_program_id" =>

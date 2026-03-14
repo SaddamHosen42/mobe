@@ -156,13 +156,13 @@ Breadcrumbs::for('learning-outcomes.index', function (BreadcrumbTrail $trail, $s
     $trail->push($syllabus->title, route('syllabi.show', $syllabus));
 });
 
-// ILOs > Create
+// PLOs > Create
 Breadcrumbs::for('ilos.create', function (BreadcrumbTrail $trail, $syllabus) {
     $trail->parent('learning-outcomes.index', $syllabus);
-    $trail->push('Create ILO');
+    $trail->push('Create PLO');
 });
 
-// ILOs > Edit
+// PLOs > Edit
 Breadcrumbs::for('ilos.edit', function (BreadcrumbTrail $trail, $syllabus, $ilo) {
     $trail->parent('learning-outcomes.index', $syllabus);
     $trail->push(Str::limit($ilo->description, 30));

@@ -42,7 +42,7 @@ class IntendedLearningOutcomePolicy
      */
     public function create(User $user, Syllabus $syllabus)
     {
-        // only owner of the syllabus can create ilo
+        // only owner of the syllabus can create plo
         return $user->id === $syllabus->creator_user_id;
     }
 
@@ -55,7 +55,7 @@ class IntendedLearningOutcomePolicy
      */
     public function update(User $user, IntendedLearningOutcome $intendedLearningOutcome)
     {
-        // only owner of the syllabus can update ilo
+        // only owner of the syllabus can update plo
         return $user->id === $intendedLearningOutcome->syllabus->creator_user_id;
     }
 
@@ -68,7 +68,7 @@ class IntendedLearningOutcomePolicy
      */
     public function delete(User $user, IntendedLearningOutcome $intendedLearningOutcome)
     {
-        // only owner of the syllabus can delete ilo
+        // only owner of the syllabus can delete plo
         return $user->id === $intendedLearningOutcome->syllabus->creator_user_id;
     }
 

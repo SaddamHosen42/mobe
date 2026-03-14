@@ -83,7 +83,7 @@ class SyllabusController extends Controller
      */
     public function show(Syllabus $syllabus)
     {
-        // get syllabus with course, ilos, llos, and clos
+        // get syllabus with course, plos, llos, and clos
         $syllabus->load(
             'course', 'learningPlans',
             'assignmentPlans',

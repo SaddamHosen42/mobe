@@ -107,7 +107,7 @@ $assignmentPlans = $syllabus->assignmentPlans;
                 @canany(['is-teacher','is-admin'])
                     <div class="order-5 sm:order-6 mr-2 sm:mr-3">
                         <x-button-link href="{{ route('syllabi.ilos.create',[$syllabus]) }}">
-                            <i class="fa fa-plus"></i> {{ __('Create New ILO') }}
+                            <i class="fa fa-plus"></i> {{ __('Create New PLO') }}
                         </x-button-link>
                     </div>
                 @endcanany
