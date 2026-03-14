@@ -13,7 +13,7 @@ $rows = collect($users)->all()["data"] ?? [];
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('mobe Users') }}
+            {{ __('HSTU-OBE Users') }}
         </h2>
     </x-slot>
 
