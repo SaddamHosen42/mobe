@@ -21,6 +21,18 @@ class MyGradeController extends Controller
             ->where('student_user_id', $user->id)
             ->get();
 
+        // Get total max points per class by summing max_point per assignment plan task
+        // (joining through student_grades ensures we only count graded assignments)
+        $allMaxPointsForCurrentUser = StudentGrade::select('assignments.course_class_id',
+            DB::raw('SUM(criterias.max_point) as max_point'))
+            ->join('assignments', 'student_grades.assignment_id', '=', 'assignments.id')
+            ->join('assignment_plans', 'assignments.assignment_plan_id', '=', 'assignment_plans.id')
+            ->join('assignment_plan_tasks', 'assignment_plan_tasks.assignment_plan_id', '=', 'assignment_plans.id')
+            ->join('criterias', 'criterias.id', '=', 'assignment_plan_tasks.criteria_id')
+            ->groupBy('assignments.course_class_id')
+            ->where('student_user_id', $user->id)
+            ->get();
+
         $userClasses = $user->joinedClasses()->get();
         foreach ($userClasses as $userClass){
             $courseAssignmentGrades = $allGradesForCurrentUser->filter(function ($grade) use ($userClass) {
@@ -28,8 +40,14 @@ class MyGradeController extends Controller
             });
             $gradedAssignmentCount = $courseAssignmentGrades->count();
             $totalAssignmentCount = $userClass->assignments()->count();
-            $userClass->gradingProgress = $gradedAssignmentCount / $totalAssignmentCount * 100;
-            $userClass->grade = $courseAssignmentGrades->sum('point');
+            $userClass->gradingProgress = $totalAssignmentCount > 0
+                ? round($gradedAssignmentCount / $totalAssignmentCount * 100, 2)
+                : 0;
+
+            $totalCollected = $courseAssignmentGrades->sum('point');
+            $maxPointRecord = $allMaxPointsForCurrentUser->firstWhere('course_class_id', $userClass->id);
+            $totalMax = $maxPointRecord ? $maxPointRecord->max_point : 0;
+            $userClass->grade = $totalMax > 0 ? round($totalCollected / $totalMax * 100, 2) : 0;
             $userClass->letterGrade = $this->_getLetterGrade($userClass->grade);
         }
 
@@ -38,7 +56,7 @@ class MyGradeController extends Controller
 
     public function show(CourseClass $courseClass){
 
-        $courseClass->load('assignments');
+        $courseClass->load('assignments.assignmentPlan.assignmentPlanTasks.criteria.lessonLearningOutcome.courseLearningOutcome');
 
         $studentGrades = StudentGrade::where('student_user_id', Auth::user()->id)
             ->with(['assignment' => function ($query) use ($courseClass) {
@@ -69,13 +87,20 @@ class MyGradeController extends Controller
             return $studentGrade->studentGradeDetails;
         })->flatten();
 
+        // Collect all assignment plan tasks across all assignments in the class
+        $allAssignmentPlanTasks = $courseClass->assignments->flatMap(function ($assignment) {
+            return $assignment->assignmentPlan->assignmentPlanTasks;
+        });
+
         $lessonLearningOutcomes = $courseClass->syllabus->lessonLearningOutcomes()->get();
         foreach ($lessonLearningOutcomes as $llo){
             $llo->collectedPoints = $studentGradeDetails->filter(function ($studentGradeDetail) use ($llo) {
                 return $studentGradeDetail->criteriaLevel->criteria->lessonLearningOutcome->id == $llo->id;
             })->sum('criteriaLevel.point');
 
-            $llo->maxPoint = $llo->criterias()->sum('max_point');
+            $llo->maxPoint = $allAssignmentPlanTasks->filter(function ($task) use ($llo) {
+                return $task->criteria->llo_id == $llo->id;
+            })->sum('criteria.max_point');
         }
 
         // CLOs
@@ -85,10 +110,9 @@ class MyGradeController extends Controller
                 return $studentGradeDetail->criteriaLevel->criteria->lessonLearningOutcome->clo_id == $clo->id;
             })->sum('criteriaLevel.point');
 
-            $aggregatedCriteriaMaxPointForLLOs = $clo->lessonLearningOutcomes()
-                ->withSum('criterias', 'max_point')->get();
-
-            $clo->maxPoint = $aggregatedCriteriaMaxPointForLLOs->sum('criterias_sum_max_point');
+            $clo->maxPoint = $allAssignmentPlanTasks->filter(function ($task) use ($clo) {
+                return optional($task->criteria->lessonLearningOutcome)->clo_id == $clo->id;
+            })->sum('criteria.max_point');
         }
 
         // PLOs
@@ -98,14 +122,9 @@ class MyGradeController extends Controller
                 return $studentGradeDetail->criteriaLevel->criteria->lessonLearningOutcome->courseLearningOutcome->ilo_id == $ilo->id;
             })->sum('criteriaLevel.point');
 
-            $aggregatedCriteriaMaxpointForCLOs = $ilo->courseLearningOutcomes()->
-                with(['lessonLearningOutcomes' => function ($query) {
-                    $query->withSum('criterias', 'max_point');
-                }])->get();
-
-            $ilo->maxPoint = $aggregatedCriteriaMaxpointForCLOs->map(function ($clo) {
-                return $clo->lessonLearningOutcomes->sum('criterias_sum_max_point');
-            })->sum();
+            $ilo->maxPoint = $allAssignmentPlanTasks->filter(function ($task) use ($ilo) {
+                return optional(optional($task->criteria->lessonLearningOutcome)->courseLearningOutcome)->ilo_id == $ilo->id;
+            })->sum('criteria.max_point');
         }
 
         return view('mygrade.show', [
@@ -119,22 +138,26 @@ class MyGradeController extends Controller
 
     public function _getLetterGrade($point)
     {
-        if ($point > 80) {
+        if ($point >= 80) {
+            return 'A+';
+        } elseif ($point >= 75) {
             return 'A';
-        } elseif ($point > 75) {
+        } elseif ($point >= 70) {
+            return 'A-';
+        } elseif ($point >= 65) {
             return 'B+';
-        } elseif ($point > 69) {
+        } elseif ($point >= 60) {
             return 'B';
-        } elseif ($point > 60) {
+        } elseif ($point >= 55) {
+            return 'B-';
+        } elseif ($point >= 50) {
             return 'C+';
-        } elseif ($point > 55) {
+        } elseif ($point >= 45) {
             return 'C';
-        } elseif ($point > 50) {
-            return 'D+';
-        } elseif ($point > 44) {
+        } elseif ($point >= 40) {
             return 'D';
         } else {
-            return 'E';
+            return 'F';
         }
     }
 }
