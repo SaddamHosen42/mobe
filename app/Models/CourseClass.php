@@ -14,7 +14,7 @@ class CourseClass extends Model
     protected $fillable = [
         'name',
         'class_code',
-        'thumnbnail_img'
+        'thumbnail_img'
     ];
 
     protected $casts = [
