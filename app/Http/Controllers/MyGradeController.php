@@ -38,7 +38,7 @@ class MyGradeController extends Controller
 
     public function show(CourseClass $courseClass){
 
-        $courseClass->load('assignments');
+        $courseClass->load('assignments.assignmentPlan.assignmentPlanTasks.criteria.lessonLearningOutcome.courseLearningOutcome');
 
         $studentGrades = StudentGrade::where('student_user_id', Auth::user()->id)
             ->with(['assignment' => function ($query) use ($courseClass) {
@@ -69,13 +69,20 @@ class MyGradeController extends Controller
             return $studentGrade->studentGradeDetails;
         })->flatten();
 
+        // Collect all assignment plan tasks across all assignments in the class
+        $allAssignmentPlanTasks = $courseClass->assignments->flatMap(function ($assignment) {
+            return $assignment->assignmentPlan->assignmentPlanTasks;
+        });
+
         $lessonLearningOutcomes = $courseClass->syllabus->lessonLearningOutcomes()->get();
         foreach ($lessonLearningOutcomes as $llo){
             $llo->collectedPoints = $studentGradeDetails->filter(function ($studentGradeDetail) use ($llo) {
                 return $studentGradeDetail->criteriaLevel->criteria->lessonLearningOutcome->id == $llo->id;
             })->sum('criteriaLevel.point');
 
-            $llo->maxPoint = $llo->criterias()->sum('max_point');
+            $llo->maxPoint = $allAssignmentPlanTasks->filter(function ($task) use ($llo) {
+                return $task->criteria->llo_id == $llo->id;
+            })->sum('criteria.max_point');
         }
 
         // CLOs
@@ -85,10 +92,9 @@ class MyGradeController extends Controller
                 return $studentGradeDetail->criteriaLevel->criteria->lessonLearningOutcome->clo_id == $clo->id;
             })->sum('criteriaLevel.point');
 
-            $aggregatedCriteriaMaxPointForLLOs = $clo->lessonLearningOutcomes()
-                ->withSum('criterias', 'max_point')->get();
-
-            $clo->maxPoint = $aggregatedCriteriaMaxPointForLLOs->sum('criterias_sum_max_point');
+            $clo->maxPoint = $allAssignmentPlanTasks->filter(function ($task) use ($clo) {
+                return optional($task->criteria->lessonLearningOutcome)->clo_id == $clo->id;
+            })->sum('criteria.max_point');
         }
 
         // PLOs
@@ -98,14 +104,9 @@ class MyGradeController extends Controller
                 return $studentGradeDetail->criteriaLevel->criteria->lessonLearningOutcome->courseLearningOutcome->ilo_id == $ilo->id;
             })->sum('criteriaLevel.point');
 
-            $aggregatedCriteriaMaxpointForCLOs = $ilo->courseLearningOutcomes()->
-                with(['lessonLearningOutcomes' => function ($query) {
-                    $query->withSum('criterias', 'max_point');
-                }])->get();
-
-            $ilo->maxPoint = $aggregatedCriteriaMaxpointForCLOs->map(function ($clo) {
-                return $clo->lessonLearningOutcomes->sum('criterias_sum_max_point');
-            })->sum();
+            $ilo->maxPoint = $allAssignmentPlanTasks->filter(function ($task) use ($ilo) {
+                return optional(optional($task->criteria->lessonLearningOutcome)->courseLearningOutcome)->ilo_id == $ilo->id;
+            })->sum('criteria.max_point');
         }
 
         return view('mygrade.show', [
