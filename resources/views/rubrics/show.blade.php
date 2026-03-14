@@ -4,8 +4,8 @@
         <div class="flex justify-between">
             <div class="items-start">
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                    {{ $rubric->title }} <a href="{{ route('rubrics.edit', $rubric) }}" class="ml-2 text-sm">
-                        <i class="fa fa-edit text-blue-500"></i>
+                    {{ $rubric->title }} <a href="{{ route('rubrics.edit', $rubric) }}" class="ml-2 text-sm text-blue-500">
+                        <i class="fa-solid fa-pen-to-square"></i>
                     </a>
                 </h2>
             </div>
@@ -28,8 +28,8 @@
                     <div class="flex justify-between py-2">
                         <div>
                             <span class="text-xl font-extrabold items-start">{{ $criteria->title }}</span>
-                            <a href="{{ route('rubrics.criterias.edit', [$rubric, $criteria]) }}" class="ml-2">
-                                <i class="fa fa-edit text-blue-500"></i>
+                            <a href="{{ route('rubrics.criterias.edit', [$rubric, $criteria]) }}" class="ml-2 text-blue-500 text-sm">
+                                <i class="fa-solid fa-pen-to-square"></i>
                             </a>
                         </div>
                         <div>
@@ -94,7 +94,7 @@
                                                 class="text-gray-600 px-6 py-3 border-t border-gray-100">
                                                 <div class="flex flex-wrap space-x-4">
                                                     <a href="{{ route('rubrics.criterias.criteria-levels.edit', [$rubric, $criteria, $criteriaLevel]) }}"
-                                                       class="text-blue-500">Edit</a>
+                                                       class="text-blue-500"><i class="fa-solid fa-pen-to-square"></i></a>
                                                     <form method="POST"
                                                           action="{{ route('rubrics.criterias.criteria-levels.destroy', [$rubric, $criteria, $criteriaLevel]) }}">
                                                         @csrf
@@ -102,7 +102,7 @@
 
                                                         <button class="text-red-500"
                                                                 onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
-                                                            {{ __('Delete') }}
+                                                            <i class="fa-solid fa-trash"></i>
                                                         </button>
                                                     </form>
 
@@ -126,7 +126,7 @@
 
                                 <button class="btn btn-sm btn-error text-white gap-2"
                                         onclick="event.preventDefault(); confirm('Are you sure to delete this criteria?') && this.closest('form').submit();">
-                                    <i class="fa fa-trash"></i> {{ __('Delete Criteria') }}
+                                    <i class="fa-solid fa-trash"></i> {{ __('Delete Criteria') }}
                                 </button>
                             </form>
                         </div>

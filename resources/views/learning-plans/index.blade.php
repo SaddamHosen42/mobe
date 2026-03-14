@@ -39,14 +39,14 @@
                                     class="text-gray-600 px-6 py-3 border-t border-gray-100">
                                     <div class="flex flex-wrap space-x-4">
                                         <a href="{{ route('syllabi.learning-plans.edit', [$syllabus, $plan]) }}"
-                                           class="text-blue-500">Edit</a>
+                                           class="text-blue-500"><i class="fa-solid fa-pen-to-square"></i></a>
                                         <form method="POST" action="{{ route('syllabi.learning-plans.destroy', [$syllabus, $plan]) }}">
                                             @csrf
                                             @method('delete')
 
                                             <button class="text-red-500"
                                                     onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
-                                                {{ __('Delete') }}
+                                                <i class="fa-solid fa-trash"></i>
                                             </button>
                                         </form>
 

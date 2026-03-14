@@ -43,14 +43,14 @@
                                         <a href="{{ route('faculties.departments.study-programs.index', [$faculty, $department]) }}"
                                            class="text-amber-700">Manage Study Programs</a>
                                         <a href="{{ route('faculties.departments.edit', [$faculty, $department]) }}"
-                                           class="text-blue-500">Edit</a>
+                                           class="text-blue-500"><i class="fa-solid fa-pen-to-square"></i></a>
                                         <form method="POST" action="{{ route('faculties.departments.destroy', [$faculty, $department]) }}">
                                             @csrf
                                             @method('delete')
 
                                             <button class="text-red-500"
                                                     onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
-                                                {{ __('Delete') }}
+                                                <i class="fa-solid fa-trash"></i>
                                             </button>
                                         </form>
 

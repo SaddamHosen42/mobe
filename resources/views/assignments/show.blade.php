@@ -97,7 +97,7 @@
                     <div class="flex flex-row-reverse justify-between">
                         <div class="justify-end flex flex-row gap-4 py-5 px-10">
                             <a href="{{ route('classes.assignments.edit', [$courseClass, $assignment]) }}"
-                               class="text-blue-500">Edit</a>
+                               class="text-blue-500"><i class="fa-solid fa-pen-to-square"></i></a>
                             <form method="POST"
                                   action="{{ route('classes.assignments.destroy', [$courseClass, $assignment]) }}">
                                 @csrf
@@ -105,7 +105,7 @@
 
                                 <button class="text-red-500"
                                         onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
-                                    {{ __('Delete') }}
+                                    <i class="fa-solid fa-trash"></i>
                                 </button>
                             </form>
                         </div>
