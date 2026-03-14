@@ -52,7 +52,9 @@
                                             <span class="text-gray-400"> / {{ $assignment->maxPoints }}</span>
                                         </td>
                                         <td class="text-gray-600 px-6 py-3 border-t border-gray-100">
-                                            {{ round($assignment->collectedPoints / $assignment->maxPoints * 100, 2) }}
+                                            @unless($assignment->maxPoints == 0)
+                                                {{ round($assignment->collectedPoints / $assignment->maxPoints * 100, 2) }}
+                                            @endunless
                                         </td>
                                     @else
                                     <td colspan="2" class="text-gray-600 px-6 py-3 border-t border-gray-100">
@@ -111,7 +113,9 @@
                                         <span class="text-gray-400"> / {{ $clo->maxPoint }}</span>
                                     </td>
                                     <td class="text-gray-600 px-6 py-3 border-t border-gray-100">
-                                        {{ round($clo->collectedPoints / $clo->maxPoint * 100, 2) }}%
+                                        @unless($clo->maxPoint == 0)
+                                            {{ round($clo->collectedPoints / $clo->maxPoint * 100, 2) }}%
+                                        @endunless
                                     </td>
                                 </tr>
                             @endforeach
