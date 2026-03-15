@@ -34,6 +34,9 @@ class MyGradeController extends Controller
             ->get();
 
         $userClasses = $user->joinedClasses()->get();
+        $overallCollected = 0;
+        $overallMax = 0;
+
         foreach ($userClasses as $userClass){
             $courseAssignmentGrades = $allGradesForCurrentUser->filter(function ($grade) use ($userClass) {
                 return $grade->course_class_id == $userClass->id;
@@ -49,9 +52,15 @@ class MyGradeController extends Controller
             $totalMax = $maxPointRecord ? $maxPointRecord->max_point : 0;
             $userClass->grade = $totalMax > 0 ? round($totalCollected / $totalMax * 100, 2) : 0;
             $userClass->letterGrade = $this->_getLetterGrade($userClass->grade);
+
+            $overallCollected += $totalCollected;
+            $overallMax += $totalMax;
         }
 
-        return view('mygrade.index', compact('userClasses'));
+        $overallGrade = $overallMax > 0 ? round($overallCollected / $overallMax * 100, 2) : 0;
+        $overallLetterGrade = $this->_getLetterGrade($overallGrade);
+
+        return view('mygrade.index', compact('userClasses', 'overallGrade', 'overallLetterGrade'));
     }
 
     public function show(CourseClass $courseClass){
@@ -59,6 +68,9 @@ class MyGradeController extends Controller
         $courseClass->load('assignments.assignmentPlan.assignmentPlanTasks.criteria.lessonLearningOutcome.courseLearningOutcome');
 
         $studentGrades = StudentGrade::where('student_user_id', Auth::user()->id)
+            ->whereHas('assignment', function ($query) use ($courseClass) {
+                $query->where('course_class_id', $courseClass->id);
+            })
             ->with(['assignment' => function ($query) use ($courseClass) {
                 $query->with('assignmentPlan.assignmentPlanTasks.criteria')
                     ->where('course_class_id', $courseClass->id);
