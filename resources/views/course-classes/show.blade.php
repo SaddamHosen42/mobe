@@ -10,15 +10,26 @@ use Carbon\Carbon;
                 <h1 class="mb-5 text-5xl font-bold">{{ $courseClass->name }}</h1>
                 <p class="mb-5">{{ $courseClass->course->name }}</p>
             </div>
-            @canany(['is-teacher', 'is-admin'])
+            @can('update', $courseClass)
             <div class="flex flex-row justify-end mb-3 px-4 sm:px-0 -mr-2 sm:-mr-3">
                 <div class="order-5 sm:order-6 mr-2 sm:mr-3">
                     <x-button-link href="{{ route('classes.edit', $courseClass) }}">
                         <i class="fa fa-edit"></i> {{ __('Edit') }}
                     </x-button-link>
                 </div>
+                @can('delete', $courseClass)
+                    <div class="order-5 sm:order-6 mr-2 sm:mr-3">
+                        <form action="{{ route('classes.destroy', $courseClass) }}" method="POST" onsubmit="return confirm('{{ __('Are you sure you want to delete this class?') }}')">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-error text-white">
+                                <i class="fa fa-trash"></i> {{ __('Delete') }}
+                            </button>
+                        </form>
+                    </div>
+                @endcan
             </div>
-            @endcanany
+            @endcan
         </div>
     </div>
     <div class="max-w-7xl mx-auto py-5">

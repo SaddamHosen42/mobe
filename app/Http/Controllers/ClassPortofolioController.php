@@ -72,8 +72,11 @@ class ClassPortofolioController extends Controller
     {
         $this->authorize('view', [CourseClass::class, $courseClass]);
 
+        $courseClassId = $courseClass->id;
+
         $courseClass->load('students.studentData',
             'students.studentGrades.studentGradeDetails.criteriaLevel',
+            'students.studentGrades.assignment',
             'syllabus.lessonLearningOutcomes.criterias');
 
         $dataReturn = collect();
@@ -88,6 +91,10 @@ class ClassPortofolioController extends Controller
                 $maximumCollectiblePointPerLLO = 0;
                 foreach ($llo->criterias as $criteria) {
                     foreach ($student->studentGrades as $studentGrade) {
+                        if (optional($studentGrade->assignment)->course_class_id !== $courseClassId) {
+                            continue;
+                        }
+
                         foreach ($studentGrade->studentGradeDetails as $studentGradeDetail) {
                             if ($studentGradeDetail->criteriaLevel->criteria_id == $criteria->id) {
                                 $collectedPointPerLLO += $studentGradeDetail->criteriaLevel->point;

@@ -41,31 +41,33 @@
                             <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $data['nim'] }}</td>
                             @foreach ($data['cpmk'] as $cpmk)
                             <td class="text-center text-gray-600 px-6 py-3 border-t border-gray-100">
-                                {{ round($cpmk['point']/$cpmk['maxPoint']*100,2) }}
+                                {{ $cpmk['maxPoint'] > 0 ? min(100, round($cpmk['point'] / $cpmk['maxPoint'] * 100, 2)) : 0 }}
                             </td>
                             @endforeach
                                 <?php
                                 $totalPoint = $data['cpmk']->sum('point');
+                                $totalMaxPoint = $data['cpmk']->sum('maxPoint');
+                                $grade = $totalMaxPoint > 0 ? min(100, round(($totalPoint / $totalMaxPoint) * 100, 2)) : 0;
 
-                                if ($totalPoint > 80) {
+                                if ($grade >= 80) {
                                     $pointLetter = 'A';
-                                } elseif ($totalPoint > 75) {
+                                } elseif ($grade >= 75) {
                                     $pointLetter = 'B+';
-                                } elseif ($totalPoint > 69) {
+                                } elseif ($grade >= 69) {
                                     $pointLetter = 'B';
-                                } elseif ($totalPoint > 60) {
+                                } elseif ($grade >= 60) {
                                     $pointLetter = 'C+';
-                                } elseif ($totalPoint > 55) {
+                                } elseif ($grade >= 55) {
                                     $pointLetter = 'C';
-                                } elseif ($totalPoint > 50) {
+                                } elseif ($grade >= 50) {
                                     $pointLetter = 'D+';
-                                } elseif ($totalPoint > 44) {
+                                } elseif ($grade >= 44) {
                                     $pointLetter = 'D';
                                 } else {
                                     $pointLetter = 'E';
                                 }
                                 ?>
-                            <td class="text-gray-600 px-6 py-3 border-t border-gray-100 text-center">{{ $totalPoint }}</td>
+                            <td class="text-gray-600 px-6 py-3 border-t border-gray-100 text-center">{{ $grade }}</td>
                             <td class="text-gray-600 px-6 py-3 border-t border-gray-100 text-center">{{ $pointLetter }}</td>
                         </tr>
                             <?php $i++; ?>
