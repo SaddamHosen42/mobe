@@ -41,7 +41,7 @@
                             <td class="text-gray-600 px-6 py-3 border-t border-gray-100">{{ $data['nim'] }}</td>
                             @foreach ($data['cpmk'] as $cpmk)
                             <td class="text-center text-gray-600 px-6 py-3 border-t border-gray-100">
-                                {{ round($cpmk['point']/$cpmk['maxPoint']*100,2) }}
+                                {{ $cpmk['maxPoint'] > 0 ? round($cpmk['point'] / $cpmk['maxPoint'] * 100, 2) : 0 }}
                             </td>
                             @endforeach
                                 <?php
