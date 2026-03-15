@@ -9,6 +9,14 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         {{ Breadcrumbs::render('mygrade.index') }}
         <div class="pb-8">
+            <div class="mb-4 bg-white rounded-lg shadow px-6 py-4">
+                <p class="text-sm text-gray-500 uppercase tracking-wide">Overall Grade</p>
+                <div class="mt-1 flex items-center gap-4">
+                    <span class="text-2xl font-semibold text-gray-800">{{ $overallGrade }}%</span>
+                    <span class="text-lg font-medium text-gray-600">{{ $overallLetterGrade }}</span>
+                </div>
+            </div>
+
             <div class="mb-5 overflow-x-auto bg-white rounded-lg shadow overflow-y-auto relative">
                 <table class="border-collapse table-auto w-full bg-white table-striped relative">
                     <thead>
