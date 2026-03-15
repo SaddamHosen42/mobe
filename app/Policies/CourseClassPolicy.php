@@ -69,15 +69,15 @@ class CourseClassPolicy
      */
     public function update(User $user, CourseClass $courseClass)
     {
-        if ($user->role != "teacher" && $user->role != "admin") {
+        if ($user->role == "admin") {
+            return true;
+        }
+
+        if ($user->role != "teacher") {
             return false;
         }
 
-        if ($user->id != $courseClass->creator_user_id) {
-            return false;
-        }
-
-        return true;
+        return $user->id == $courseClass->creator_user_id;
     }
 
     /**
@@ -89,7 +89,11 @@ class CourseClassPolicy
      */
     public function delete(User $user, CourseClass $courseClass)
     {
-        if ($user->role != "teacher" && $user->role != "admin") {
+        if ($user->role == "admin") {
+            return true;
+        }
+
+        if ($user->role != "teacher") {
             return false;
         }
 
@@ -103,7 +107,11 @@ class CourseClassPolicy
      */
     public function removeStudent(User $user, CourseClass $courseClass)
     {
-        if ($user->role != "teacher" && $user->role != "admin") {
+        if ($user->role == "admin") {
+            return true;
+        }
+
+        if ($user->role != "teacher") {
             return false;
         }
 
