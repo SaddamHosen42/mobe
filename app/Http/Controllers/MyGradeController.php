@@ -59,6 +59,9 @@ class MyGradeController extends Controller
         $courseClass->load('assignments.assignmentPlan.assignmentPlanTasks.criteria.lessonLearningOutcome.courseLearningOutcome');
 
         $studentGrades = StudentGrade::where('student_user_id', Auth::user()->id)
+            ->whereHas('assignment', function ($query) use ($courseClass) {
+                $query->where('course_class_id', $courseClass->id);
+            })
             ->with(['assignment' => function ($query) use ($courseClass) {
                 $query->with('assignmentPlan.assignmentPlanTasks.criteria')
                     ->where('course_class_id', $courseClass->id);
