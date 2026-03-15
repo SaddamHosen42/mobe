@@ -152,7 +152,7 @@ $assignmentPlans = $syllabus->assignmentPlans;
                                                     @method('delete')
 
                                                     <button class="text-red-500"
-                                                            onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
+                                                            type="button" onclick="showDeleteConfirm(this);">
                                                         <i class="fa-solid fa-trash"></i>
                                                     </button>
                                                 </form>
@@ -231,7 +231,7 @@ $assignmentPlans = $syllabus->assignmentPlans;
                                                     @method('delete')
 
                                                     <button class="text-red-500"
-                                                            onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
+                                                            type="button" onclick="showDeleteConfirm(this);">
                                                         <i class="fa-solid fa-trash"></i>
                                                     </button>
                                                 </form>
@@ -310,7 +310,7 @@ $assignmentPlans = $syllabus->assignmentPlans;
                                                     @method('delete')
 
                                                     <button class="text-red-500"
-                                                            onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
+                                                            type="button" onclick="showDeleteConfirm(this);">
                                                         <i class="fa-solid fa-trash"></i>
                                                     </button>
                                                 </form>
@@ -394,7 +394,7 @@ $assignmentPlans = $syllabus->assignmentPlans;
                                                     @method('delete')
 
                                                     <button class="text-red-500"
-                                                            onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
+                                                            type="button" onclick="showDeleteConfirm(this);">
                                                         <i class="fa-solid fa-trash"></i>
                                                     </button>
                                                 </form>
@@ -457,7 +457,7 @@ $assignmentPlans = $syllabus->assignmentPlans;
                                             @method('delete')
                                             <div class="tooltip tooltip-left" data-tip="Delete Assignment Plan">
                                                 <button class="text-red-500"
-                                                        onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
+                                                        type="button" onclick="showDeleteConfirm(this);">
                                                     <i class="fa-solid fa-trash"></i>
                                                 </button>
                                             </div>
@@ -554,7 +554,7 @@ $assignmentPlans = $syllabus->assignmentPlans;
 
                                                             <div class="tooltip tooltip-right   " data-tip="Delete Rubric">
                                                                 <button class="text-red-500 px-3"
-                                                                        onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
+                                                                        type="button" onclick="showDeleteConfirm(this);">
                                                                     <i class="fa fa-trash"></i>
                                                                 </button>
                                                             </div>
@@ -635,7 +635,7 @@ $assignmentPlans = $syllabus->assignmentPlans;
                                                                         @method('delete')
 
                                                                         <button class="text-red-500"
-                                                                                onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
+                                                                                type="button" onclick="showDeleteConfirm(this);">
                                                                             <i class="fa-solid fa-trash"></i>
                                                                         </button>
                                                                     </form>

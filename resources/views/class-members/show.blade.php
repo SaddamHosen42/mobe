@@ -74,7 +74,7 @@
                                         @method('delete')
 
                                         <input type="hidden" name="student_id" :value="student.id">
-                                        <button type="submit" class="text-red-500" onclick="return confirm('Are you sure you want to remove this student?');">
+                                        <button type="submit" class="text-red-500" type="button" onclick="showDeleteConfirm(this, 'Are you sure you want to remove this student? This action cannot be undone.');">
                                             <i class="fa-solid fa-user-slash"></i>
                                         </button>
                                     </form>

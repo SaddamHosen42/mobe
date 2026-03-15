@@ -19,10 +19,11 @@ use Carbon\Carbon;
                 </div>
                 @can('delete', $courseClass)
                     <div class="order-5 sm:order-6 mr-2 sm:mr-3">
-                        <form action="{{ route('classes.destroy', $courseClass) }}" method="POST" onsubmit="return confirm('{{ __('Are you sure you want to delete this class?') }}')">
+                        <form action="{{ route('classes.destroy', $courseClass) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-error text-white">
+                            <button type="button" class="btn btn-error text-white"
+                                    onclick="showDeleteConfirm(this, 'Are you sure you want to delete this class? This action cannot be undone.');">
                                 <i class="fa fa-trash"></i> {{ __('Delete') }}
                             </button>
                         </form>
