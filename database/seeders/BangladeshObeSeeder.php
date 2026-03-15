@@ -80,7 +80,7 @@ class BangladeshObeSeeder extends Seeder
 
                 DB::table('student_data')->insert([
                     'id' => $studentId,
-                    'student_id_number' => 'CSE2026' . str_pad((string) ($index + 1), 3, '0', STR_PAD_LEFT),
+                    'student_id_number' => '2202' . str_pad((string) ($index + 1), 3, '0', STR_PAD_LEFT),
                 ]);
             }
 

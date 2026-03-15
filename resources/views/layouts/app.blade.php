@@ -32,5 +32,8 @@
                 {{ $slot }}
             </main>
         </div>
+
+        {{-- Global Delete Confirmation Modal --}}
+        <x-delete-confirm-modal />
     </body>
 </html>

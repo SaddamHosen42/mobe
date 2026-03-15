@@ -49,7 +49,7 @@
                                             @method('delete')
 
                                             <button class="text-red-500"
-                                                    onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
+                                                    type="button" onclick="showDeleteConfirm(this);">
                                                 <i class="fa-solid fa-trash"></i>
                                             </button>
                                         </form>

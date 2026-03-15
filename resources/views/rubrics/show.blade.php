@@ -101,7 +101,7 @@
                                                         @method('delete')
 
                                                         <button class="text-red-500"
-                                                                onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
+                                                                type="button" onclick="showDeleteConfirm(this);">
                                                             <i class="fa-solid fa-trash"></i>
                                                         </button>
                                                     </form>
@@ -125,7 +125,7 @@
                                 @method('delete')
 
                                 <button class="btn btn-sm btn-error text-white gap-2"
-                                        onclick="event.preventDefault(); confirm('Are you sure to delete this criteria?') && this.closest('form').submit();">
+                                        type="button" onclick="showDeleteConfirm(this, 'Are you sure you want to delete this criteria? This action cannot be undone.');">
                                     <i class="fa-solid fa-trash"></i> {{ __('Delete Criteria') }}
                                 </button>
                             </form>

@@ -100,7 +100,7 @@
                                             @method('delete')
                                             <input type="hidden" name="student_id" value="{{ $student->id }}">
                                             <button class="text-red-500"
-                                                    onclick="event.preventDefault(); confirm('Are you sure?') && this.closest('form').submit();">
+                                                    type="button" onclick="showDeleteConfirm(this);">
                                                 {{ __('Delete') }}
                                             </button>
                                         </form>

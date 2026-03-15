@@ -22,7 +22,7 @@
                 <form action="{{route('courses.destroy', $course->id)}}" method="post" class="py-2">
                     @csrf
                     @method('delete')
-                    <button onclick="return confirm('Are you sure you want to delete this data?');"><i class="fa-regular fa-trash-can text-red-600"></i></button>
+                    <button type="button" onclick="showDeleteConfirm(this, 'Are you sure you want to delete this course? This action cannot be undone.');"><i class="fa-regular fa-trash-can text-red-600"></i></button>
                 </form>
             </div>
         </div>

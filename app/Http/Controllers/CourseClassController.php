@@ -188,7 +188,7 @@ class CourseClassController extends Controller
         $this->authorize('delete', $class);
 
         $class->delete();
-        return back();
+        return redirect()->route('classes.index');
     }
 
     public function show_join()
