@@ -13,13 +13,29 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('student_grades', function (Blueprint $table) {
-            $table->dropForeign(['assignment_plan_task_id']);
-            $table->dropColumn('assignment_plan_task_id');
-            $table->dropForeign(['criteria_level_id']);
-            $table->dropColumn('criteria_level_id');
-            $table->addColumn('boolean', 'published')->after('assignment_id');
-        });
+        $driver = Schema::getConnection()->getDriverName();
+
+        if ($driver !== 'sqlite') {
+            if (Schema::hasColumn('student_grades', 'assignment_plan_task_id')) {
+                Schema::table('student_grades', function (Blueprint $table) {
+                    $table->dropForeign(['assignment_plan_task_id']);
+                    $table->dropColumn('assignment_plan_task_id');
+                });
+            }
+
+            if (Schema::hasColumn('student_grades', 'criteria_level_id')) {
+                Schema::table('student_grades', function (Blueprint $table) {
+                    $table->dropForeign(['criteria_level_id']);
+                    $table->dropColumn('criteria_level_id');
+                });
+            }
+        }
+
+        if (! Schema::hasColumn('student_grades', 'published')) {
+            Schema::table('student_grades', function (Blueprint $table) {
+                $table->boolean('published')->default(false)->after('assignment_id');
+            });
+        }
 
         Schema::create('student_grade_details', function (Blueprint $table) {
             $table->id();
