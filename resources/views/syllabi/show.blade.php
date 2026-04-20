@@ -433,11 +433,11 @@ $assignmentPlans = $syllabus->assignmentPlans;
                                 }
                             }
                             ?>
-                        {{ __('Assignment Plan') }} <span class="badge badge-primary p-4">{{ $assignmentPlans->count() }} assignment(s) with {{ $totalMaxPoint }} collectible point(s)</span>
+                        {{ __('Assessment Plan') }} <span class="badge badge-primary p-4">{{ $assignmentPlans->count() }} assessment(s) with {{ $totalMaxPoint }} collectible point(s)</span>
                     </h2>
                     <div class="order-5 sm:order-6 mr-2 sm:mr-3">
                         <x-button-link href="{{ route('syllabi.assignment-plans.create', $syllabus) }}">
-                            <i class="fa fa-plus"></i> {{ __('Create New Assignment Plan') }}
+                            <i class="fa fa-plus"></i> {{ __('Create New Assessment Plan') }}
                         </x-button-link>
                     </div>
                 </div>
@@ -447,7 +447,7 @@ $assignmentPlans = $syllabus->assignmentPlans;
                             @foreach ($assignmentPlans as $assignmentPlan)
                                 <div class="p-5 border border-gray-200 rounded m-4">
                                     <div class="flex flex-row justify-end gap-3 pr-2">
-                                        <div class="tooltip tooltip-left" data-tip="Edit Assignment Plan">
+                                        <div class="tooltip tooltip-left" data-tip="Edit Assessment Plan">
                                             <a href="{{ route('syllabi.assignment-plans.edit', [$syllabus, $assignmentPlan]) }}"
                                                class="text-blue-500"><i class="fa-solid fa-pen-to-square"></i></a>
                                         </div>
@@ -455,7 +455,7 @@ $assignmentPlans = $syllabus->assignmentPlans;
                                               action="{{ route('syllabi.assignment-plans.destroy', [$syllabus, $assignmentPlan]) }}">
                                             @csrf
                                             @method('delete')
-                                            <div class="tooltip tooltip-left" data-tip="Delete Assignment Plan">
+                                            <div class="tooltip tooltip-left" data-tip="Delete Assessment Plan">
                                                 <button class="text-red-500"
                                                         type="button" onclick="showDeleteConfirm(this);">
                                                     <i class="fa-solid fa-trash"></i>
@@ -464,7 +464,7 @@ $assignmentPlans = $syllabus->assignmentPlans;
                                         </form>
                                     </div>
                                     <div class="text-center pb-6">
-                                        <h3 class="text-2xl font-bold p-3">{{ __("Assignment Plan") }}</h3>
+                                        <h3 class="text-2xl font-bold p-3">{{ __("Assessment Plan") }}</h3>
                                         <h3 class="text-xl font-semibold">{{ $assignmentPlan->title }}</h3>
                                     </div>
                                     <div class="px-4">
@@ -492,19 +492,19 @@ $assignmentPlans = $syllabus->assignmentPlans;
                                                         </ul>
                                                     @else
                                                         <span
-                                                            class="badge badge-ghost p-3">Please set the grading criteria for the assignment plan tasks</span>
+                                                            class="badge badge-ghost p-3">Please set the grading criteria for the assessment plan tasks</span>
                                                     @endif
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="text-gray-600 px-6 py-3 border-t border-gray-100">Group
-                                                    Assignment
+                                                    Assessment
                                                 </td>
                                                 <td class="text-gray-600 px-6 py-3 border-t border-gray-100">
                                                     : {{ $assignmentPlan->is_group_assignment ? "yes": "no" }}</td>
                                             </tr>
                                             <tr>
-                                                <td class="text-gray-600 px-6 py-3 border-t border-gray-100">Assignment
+                                                <td class="text-gray-600 px-6 py-3 border-t border-gray-100">Assessment
                                                     Style
                                                 </td>
                                                 <td class="text-gray-600 px-6 py-3 border-t border-gray-100">
@@ -581,7 +581,7 @@ $assignmentPlans = $syllabus->assignmentPlans;
                                         </table>
 
                                         <div class="flex flex-row justify-between py-6">
-                                            <p class="font-semibold">{{ __("Assignment Plan Tasks") }}</p>
+                                            <p class="font-semibold">{{ __("Assessment Plan Tasks") }}</p>
                                             <div class="order-5">
                                                 <x-button-link
                                                     href="{{ route('syllabi.assignment-plans.assignment-plan-tasks.create', [$syllabus, $assignmentPlan]) }}">
@@ -648,7 +648,7 @@ $assignmentPlans = $syllabus->assignmentPlans;
                                             </div>
                                         @else
                                             <div class="p-8">
-                                                <p class="text-center text-gray-500">{{ __("No assignment plan tasks yet.") }}</p>
+                                                <p class="text-center text-gray-500">{{ __("No assessment plan tasks yet.") }}</p>
                                             </div>
                                         @endif
                                     </div>
@@ -659,7 +659,7 @@ $assignmentPlans = $syllabus->assignmentPlans;
                         <div class="w-full h-full overflow-hidden shadow-sm sm:rounded-lg">
                             <div class="bg-white p-5 shadow-sm rounded-sm text-center">
                                 <p class="text-gray-500">
-                                    No assignment plan found.
+                                    No assessment plan found.
                                 </p>
                             </div>
                         </div>

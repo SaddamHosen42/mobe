@@ -3,7 +3,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __("New Assignment Plan Task") }}
+            {{ __("New Assessment Plan Task") }}
         </h2>
     </x-slot>
 

@@ -101,12 +101,12 @@ use Carbon\Carbon;
                     <div class="bg-base-100 rounded-box mx-2 flex w-full flex-col justify-center gap-4 p-4 shadow-xl">
                         <div class="flex flex-row justify-between mb-3 px-4 sm:px-0 -mr-2 sm:-mr-3">
                             <h2 class="text-xl font-extrabold py-2">
-                                {{ __('Assignments') }}
+                                {{ __('Assessments') }}
                             </h2>
                             @canany(['is-teacher', 'is-admin'])
                             <div class="order-5 sm:order-6 mr-2 sm:mr-3">
                                 <x-button-link href="{{ route('classes.assignments.create', $courseClass) }}">
-                                    <i class="fa fa-plus"></i> {{ __('Create New Assignment') }}
+                                    <i class="fa fa-plus"></i> {{ __('Create New Assessment') }}
                                 </x-button-link>
                             </div>
                             @endcanany
@@ -149,7 +149,7 @@ use Carbon\Carbon;
                         </div>
                         @else
                             <div class="p-3 text-center">
-                                <p class="text-gray-500">{{ __('No assignments found.') }}</p>
+                                <p class="text-gray-500">{{ __('No assessments found.') }}</p>
                             </div>
                         @endif
                     </div>

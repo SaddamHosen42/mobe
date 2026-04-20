@@ -1,6 +1,6 @@
 @php use Carbon\Carbon; @endphp
 
-@section('pageTitle', "$courseClass->name Assignment")
+@section('pageTitle', "$courseClass->name Assessment")
 
 <x-app-layout>
     <x-slot name="header">
@@ -16,7 +16,7 @@
             </div>
             <div class="title-wrapper mt-[4px]">
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                    {{ __(' Assignment Class')}}
+                    {{ __(' Assessment Class')}}
                 </h2>
             </div>
         </div>
@@ -50,7 +50,7 @@
                                     <div class="flexke2 pt-3 ">
                                         <div class="truncate">
                                             <h1 class="truncate text-lg font-bold text-black hover:text-orange-600">
-                                                Add Assignment
+                                                Add Assessment
                                             </h1>
                                         </div>
                                     </div>

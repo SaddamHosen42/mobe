@@ -15,7 +15,7 @@
                         <td>: {{ $student->name }}</td>
                     </tr>
                     <tr>
-                        <td><span class="mr-10">Assignment</span></td>
+                        <td><span class="mr-10">Assessment</span></td>
                         <td>: {{ $assignment->assignmentPlan->title }}</td>
                     </tr>
                     </tbody>

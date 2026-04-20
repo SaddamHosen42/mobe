@@ -69,7 +69,7 @@
                                                     </tr>
                                                     <tr class="">
                                                         <th>No</th>
-                                                        <th class="w-80">Assignment</th>
+                                                        <th class="w-80">Assessment</th>
                                                         <th>Grade</th>
                                                     </tr>
                                                     </thead>
