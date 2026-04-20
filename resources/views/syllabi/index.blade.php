@@ -1,9 +1,9 @@
-@section('pageTitle', "Syllabus")
+@section('pageTitle', "Course Plan")
 
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            My Syllabus
+            My Course Plan
         </h2>
     </x-slot>
 
@@ -13,7 +13,7 @@
             <div class="flex flex-row sm:justify-end mb-3 px-4 sm:px-0 -mr-2 sm:-mr-3">
                 <div class="order-5 sm:order-6 mr-2 sm:mr-3">
                     <a href="{{ route('syllabi.create') }}" class="w-full bg-white border border-gray-300 rounded-md shadow-sm px-2.5 sm:px-4 py-2 inline-flex justify-center text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                        <span class="pr-1"><i class="fa fa-plus"></i> {{ __('Create New Syllabus') }}</span>
+                        <span class="pr-1"><i class="fa fa-plus"></i> {{ __('Create New Course Plan') }}</span>
                     </a>
                 </div>
             </div>
@@ -62,7 +62,7 @@
                 {{ $syllabi->links() }}
             @else
                 <div class="text-center text-gray-600 p-8">
-                    {{ __('No syllabus found.') }}
+                    {{ __('No course plan found.') }}
                 </div>
             @endif
         </div>

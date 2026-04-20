@@ -19,7 +19,7 @@
             <div class="mb-5 overflow-x-auto bg-white rounded-lg shadow overflow-y-auto relative">
                 @if(empty($assignment->assignmentPlan->rubric))
                     <p class="text-center text-gray-500 py-5">
-                        Please create a rubric for "{{ $assignment->assignmentPlan->title }}" assessment plan in the <a href="{{ route('syllabi.show', $assignment->assignmentPlan->syllabus) }}" class="text-blue-500">Syllabus</a> of this class.
+                        Please create a rubric for "{{ $assignment->assignmentPlan->title }}" assessment plan in the <a href="{{ route('syllabi.show', $assignment->assignmentPlan->syllabus) }}" class="text-blue-500">Course Plan</a> of this class.
                     </p>
                 @elseif($assignment->assignmentPlan->rubric->criterias->isEmpty())
                     <p class="text-center text-gray-500 py-5">
@@ -32,7 +32,7 @@
                     </p>
                 @elseif($assignment->assignmentPlan->assignmentPlanTasks->isEmpty())
                     <p class="text-center text-gray-500 py-5">
-                        Please add tasks to the assessment plan "{{ $assignment->assignmentPlan->title }}" in the <a href="{{ route('syllabi.show', $assignment->assignmentPlan->syllabus) }}" class="text-blue-500">Syllabus</a> of this class.
+                        Please add tasks to the assessment plan "{{ $assignment->assignmentPlan->title }}" in the <a href="{{ route('syllabi.show', $assignment->assignmentPlan->syllabus) }}" class="text-blue-500">Course Plan</a> of this class.
                     </p>
                 @else
                 <table class="border-collapse table-auto w-full bg-white table-striped relative">

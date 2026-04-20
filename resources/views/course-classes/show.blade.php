@@ -45,7 +45,7 @@ use Carbon\Carbon;
                             <p>{{ $courseClass->class_code }}</p>
                         </div>
                         <div class="flex justify-between py-3 text-right">
-                            <p>{{ __('Syllabus') }}</p>
+                            <p>{{ __('Course Plan') }}</p>
                             <p>
                                 @if($courseClass->syllabus)
                                     <a href="{{ route('syllabi.show', $courseClass->syllabus) }}" class="text-blue-700 hover:text-blue-600">{{ $courseClass->syllabus->title }}</a>

@@ -67,27 +67,27 @@ Breadcrumbs::for('study-programs.edit', function (BreadcrumbTrail $trail, $facul
 // Syllabi
 Breadcrumbs::for('syllabi.index', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
-    $trail->push('Syllabus', route('syllabi.index'));
+    $trail->push('Course Plan', route('syllabi.index'));
 });
 
 // Syllabi > Show
 Breadcrumbs::for('syllabi.show', function (BreadcrumbTrail $trail, $syllabus) {
     $trail->parent('home');
-    $trail->push('Syllabus', route('syllabi.index'));
+    $trail->push('Course Plan', route('syllabi.index'));
     $trail->push($syllabus->title, route('syllabi.show', $syllabus));
 });
 
 // Syllabi > Create
 Breadcrumbs::for('syllabi.create', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
-    $trail->push('Syllabus', route('syllabi.index'));
+    $trail->push('Course Plan', route('syllabi.index'));
     $trail->push('Create', route('syllabi.create'));
 });
 
 // Syllabi > Edit
 Breadcrumbs::for('syllabi.edit', function (BreadcrumbTrail $trail, $syllabus) {
     $trail->parent('home');
-    $trail->push('Syllabus', route('syllabi.index'));
+    $trail->push('Course Plan', route('syllabi.index'));
     $trail->push($syllabus->title, route('syllabi.show', $syllabus));
     $trail->push('Edit', route('syllabi.edit', $syllabus));
 });
@@ -114,7 +114,7 @@ Breadcrumbs::for('learning-plans.edit', function (BreadcrumbTrail $trail, $sylla
 // For all children of syllabi
 Breadcrumbs::for('syllabi.*', function (BreadcrumbTrail $trail, $syllabus) {
     $trail->parent('home');
-    $trail->push("Syllabus", route('syllabi.index'));
+    $trail->push("Course Plan", route('syllabi.index'));
     $trail->push($syllabus->title, route('syllabi.show', $syllabus));
 });
 
@@ -133,7 +133,7 @@ Breadcrumbs::for('assignment-plan-tasks.edit', function (BreadcrumbTrail $trail,
 // Assignment Plans
 Breadcrumbs::for('assignment-plans.index', function (BreadcrumbTrail $trail, $syllabus) {
     $trail->parent('home');
-    $trail->push("Syllabus", route('syllabi.index'));
+    $trail->push("Course Plan", route('syllabi.index'));
     $trail->push($syllabus->title, route('syllabi.show', $syllabus));
 });
 
@@ -152,7 +152,7 @@ Breadcrumbs::for('assignment-plans.edit', function (BreadcrumbTrail $trail, $syl
 // Learing Outcomes
 Breadcrumbs::for('learning-outcomes.index', function (BreadcrumbTrail $trail, $syllabus) {
     $trail->parent('home');
-    $trail->push('Syllabus', route('syllabi.index'));
+    $trail->push('Course Plan', route('syllabi.index'));
     $trail->push($syllabus->title, route('syllabi.show', $syllabus));
 });
 

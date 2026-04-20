@@ -41,7 +41,7 @@ $assignmentPlans = $syllabus->assignmentPlans;
                     <div class="p-4">
                         <div class="text-base-content">
                             <h2 class="text-xl font-bold text-gray-500 px-2 py-2">
-                                Syllabus Information
+                                Course Plan Information
                             </h2>
                             @php
                                 $syllabusBasicInfo = [
