@@ -26,7 +26,7 @@
                 @canany(['is-teacher', 'is-admin'])
                     <div class="hidden space-x-8 sm:-my-px sm:ml-5 sm:flex">
                         <x-nav-link :href="route('syllabi.index')" :active="request()->routeIs('syllabi.index')">
-                            {{ __('Syllabus') }}
+                            {{ __('Course Plan') }}
                         </x-nav-link>
                     </div>
                 @endcanany

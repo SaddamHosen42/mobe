@@ -1,9 +1,9 @@
-@section('pageTitle', "Create New Syllabus")
+@section('pageTitle', "Create New Course Plan")
 
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Create Syllabus') }}
+            {{ __('Create Course Plan') }}
         </h2>
     </x-slot>
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -32,7 +32,7 @@
                         <label class="label">
                             <span class="label-text">Title</span>
                         </label>
-                        <input type="text" name="title" placeholder="Syllabus Title"
+                        <input type="text" name="title" placeholder="Course Plan Title"
                                class="input input-bordered w-full max-w-xs" value="{{ old('title') }}"/>
                         <x-input-error :messages="$errors->get('title')" class="mt-2"/>
                     </div>
@@ -41,7 +41,7 @@
                         <label class="label">
                             <span class="label-text">Author</span>
                         </label>
-                        <textarea class="textarea textarea-bordered w-full lg:w-3/4 h-64" placeholder="Syllabus Author"
+                        <textarea class="textarea textarea-bordered w-full lg:w-3/4 h-64" placeholder="Course Plan Author"
                                   name="author">{{ old('author') }}</textarea>
                         <x-input-error :messages="$errors->get('author')" class="mt-2"/>
                     </div>

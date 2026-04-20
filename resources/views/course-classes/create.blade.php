@@ -27,10 +27,10 @@
 
                     <div class="form-control w-full p-3">
                         <label class="label">
-                            <span class="label-text">Syllabus</span>
+                            <span class="label-text">Course Plan</span>
                         </label>
                         <select class="select select-bordered w-full max-w-xs" name="syllabus_id">
-                            <option disabled selected>Choose the syllabus</option>
+                            <option disabled selected>Choose the course plan</option>
                             @foreach ($syllabi as $syllabus)
                                 <option value="{{ $syllabus->id }}" {{ (old("syllabus_id") == $syllabus->id ? "selected":"") }}>{{ $syllabus->title }}</option>
                             @endforeach
