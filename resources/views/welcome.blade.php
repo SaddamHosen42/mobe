@@ -108,7 +108,7 @@
                 </div>
                 <h3 class="text-xl font-bold text-slate-900">Assessment Plans and Rubrics</h3>
                 <p class="mt-3 text-sm leading-6 text-slate-600">
-                    Build assignment plans, grading plans, criteria, and rubric levels so each evaluation stays consistent with the OBE framework.
+                    Build assessment plans, grading plans, criteria, and rubric levels so each evaluation stays consistent with the OBE framework.
                 </p>
             </div>
 

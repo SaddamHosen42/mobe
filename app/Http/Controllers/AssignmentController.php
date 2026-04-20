@@ -51,7 +51,7 @@ class AssignmentController extends Controller
         $availableAssignmentPlans = $this->_getAvailableAssignmentPlans($class);
 
         if ($availableAssignmentPlans->isEmpty()) {
-            return redirect()->back()->with('error', 'You have no assignment plan available to create an assignment');
+            return redirect()->back()->with('error', 'You have no assessment plan available to create an assessment');
         }
 
         return view('assignments.create', [
@@ -84,7 +84,7 @@ class AssignmentController extends Controller
             $availableAssignmentPlans = $this->_getAvailableAssignmentPlans($class);
 
             if ($availableAssignmentPlans->isEmpty()) {
-                $validator->errors()->add('assignment_plan_id', 'You have no assignment plan available to create an assignment');
+                $validator->errors()->add('assignment_plan_id', 'You have no assessment plan available to create an assessment');
             }
 
             if (!$availableAssignmentPlans->contains('id', $request->assignment_plan_id)) {
@@ -218,7 +218,7 @@ class AssignmentController extends Controller
             $availableAssignmentPlans->push($assignment->assignmentPlan);
 
             if ($availableAssignmentPlans->isEmpty() && $assignment->assignment_plan_id != (int) $request->assignment_plan_id) {
-                $validator->errors()->add('assignment_plan_id', 'An assignment plan can only be used once per class');
+                $validator->errors()->add('assignment_plan_id', 'An assessment plan can only be used once per class');
             }
 
             if (!$availableAssignmentPlans->contains('id', $request->assignment_plan_id)) {

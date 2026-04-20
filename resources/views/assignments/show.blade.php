@@ -1,6 +1,6 @@
 @php use Carbon\Carbon; @endphp
 
-@section('pageTitle', "$courseClass->name Assignment Detail")
+@section('pageTitle', "$courseClass->name Assessment Detail")
 @php($assignmentPlan = $assignment->assignmentPlan)
 @php($assignmentTasks = $assignmentPlan->assignmentPlanTasks)
 
@@ -9,7 +9,7 @@
         <div class="flex flex-row gap-4">
             <x-back-link/>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __(' Assignment Detail')}}
+                {{ __(' Assessment Detail')}}
             </h2>
         </div>
     </x-slot>
@@ -52,7 +52,7 @@
                             </div>
                         </div>
                         @if($assignmentPlan->is_group_assignment)
-                            <div class="badge badge-primary p-4 w-[300px]">Group Assignment</div>
+                            <div class="badge badge-primary p-4 w-[300px]">Group Assessment</div>
                         @endif
                     </div>
                 </div>

@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Hashids\Hashids;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
 
 class CourseClassController extends Controller
 {
@@ -91,7 +92,7 @@ class CourseClassController extends Controller
         $courseClass->creator_user_id = Auth::user()->id;
 
         if ($request->hasFile('thumbnail_img')) {
-            $courseClass->thumbnail_img = $request->file('thumbnail_img')->store('public/thumbnail');
+            $courseClass->thumbnail_img = $request->file('thumbnail_img')->store('thumbnail', 'public');
         }
 
         $courseClass->save();
@@ -163,7 +164,15 @@ class CourseClassController extends Controller
             'thumbnail_img' => 'nullable|image|mimes:png,jpg,jpeg,webp|max:2048',
         ]);
         if ($request->hasFile('thumbnail_img')) {
-            $validateData['thumbnail_img'] = $request->file('thumbnail_img')->store('public/thumbnail');
+            if ($class->thumbnail_img) {
+                $oldPath = ltrim((string) $class->thumbnail_img, '/');
+                if (str_starts_with($oldPath, 'public/')) {
+                    $oldPath = substr($oldPath, 7);
+                }
+                Storage::disk('public')->delete($oldPath);
+            }
+
+            $validateData['thumbnail_img'] = $request->file('thumbnail_img')->store('thumbnail', 'public');
         }
 
         $class->name = $validateData['name'];

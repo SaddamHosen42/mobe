@@ -14,7 +14,7 @@
         <div class="pb-2">
             <div class="flex flex-row justify-between mb-3 sm:px-0 -mr-2 sm:-mr-3">
                 <h2 class="text-xl font-extrabold px-2 py-1">
-                    Assignment Grades
+                    Assessment Grades
                 </h2>
             </div>
             <div class="pb-4">
@@ -27,7 +27,7 @@
                                     No
                                 </th>
                                 <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate">
-                                    Assignment
+                                    Assessment
                                 </th>
                                 <th class="bg-gray-50 sticky top-0 border-b border-gray-100 px-6 py-3 text-gray-500 font-bold tracking-wider uppercase text-xs truncate w-32">
                                     Collected Points

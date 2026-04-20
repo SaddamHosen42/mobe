@@ -1,9 +1,9 @@
-@section('pageTitle', "Edit Assignment Plan")
+@section('pageTitle', "Edit Assessment Plan")
 
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Edit Assignment Plan') }}
+            {{ __('Edit Assessment Plan') }}
         </h2>
     </x-slot>
 
@@ -42,9 +42,9 @@
 
                     <div class="form-control w-full p-3">
                         <label class="label">
-                            <span class="label-text">Assignment style</span>
+                            <span class="label-text">Assessment style</span>
                         </label>
-                        <input type="text" name="assignment_style" placeholder="Assignment style"
+                        <input type="text" name="assignment_style" placeholder="Assessment style"
                                class="input input-bordered w-full max-w-xl" value="{{ old('assignment_style', $assignmentPlan->assignment_style) }}"/>
                         <x-input-error :messages="$errors->get('assignment_style')" class="mt-2"/>
                     </div>
@@ -75,7 +75,7 @@
 
                     <div class="flex justify-start items-center p-3">
                         <label class="label">
-                            <span class="label-text">Group Assignment</span>
+                            <span class="label-text">Group Assessment</span>
                         </label>
                         <div class="px-4">
                             <input name="is_group_assignment" id="is_group_assignment" type="checkbox" {{ $assignmentPlan->is_group_assignment ? "checked": "" }}>

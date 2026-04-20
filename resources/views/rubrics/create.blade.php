@@ -11,7 +11,7 @@
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 border-b border-gray-200">
                 <div class="bg-yellow-50 p-5     m-2 w-2/3 rounded-xl">
-                    <p class="text-sm text-gray-500">You're creating new rubric for assignment plan: {{ $assignmentPlan->title }}</p>
+                    <p class="text-sm text-gray-500">You're creating new rubric for assessment plan: {{ $assignmentPlan->title }}</p>
                 </div>
                 <form method="POST" action="{{ route('rubrics.store') }}">
                     @csrf

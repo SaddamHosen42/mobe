@@ -121,7 +121,7 @@ Breadcrumbs::for('syllabi.*', function (BreadcrumbTrail $trail, $syllabus) {
 // Assignment Plan Tasks > Create
 Breadcrumbs::for('assignment-plan-tasks.create', function (BreadcrumbTrail $trail, $syllabus) {
     $trail->parent('syllabi.*', $syllabus);
-    $trail->push('Create New Assignment Plan Task');
+    $trail->push('Create New Assessment Plan Task');
 });
 
 // Assignment Plan Tasks > Edit
@@ -140,13 +140,13 @@ Breadcrumbs::for('assignment-plans.index', function (BreadcrumbTrail $trail, $sy
 // Assignment Plans > Create
 Breadcrumbs::for('assignment-plans.create', function (BreadcrumbTrail $trail, $syllabus) {
     $trail->parent('assignment-plans.index', $syllabus);
-    $trail->push('Create Assignment Plan', route('syllabi.assignment-plans.create', $syllabus));
+    $trail->push('Create Assessment Plan', route('syllabi.assignment-plans.create', $syllabus));
 });
 
 // Assignment Plans > Edit
 Breadcrumbs::for('assignment-plans.edit', function (BreadcrumbTrail $trail, $syllabus, $assignmentPlan) {
     $trail->parent('assignment-plans.index', $syllabus);
-    $trail->push("Edit Assignment Plan", route('syllabi.assignment-plans.edit', [$syllabus, $assignmentPlan]));
+    $trail->push("Edit Assessment Plan", route('syllabi.assignment-plans.edit', [$syllabus, $assignmentPlan]));
 });
 
 // Learing Outcomes
@@ -262,7 +262,7 @@ Breadcrumbs::for('class-members.show', function (BreadcrumbTrail $trail, $class)
 Breadcrumbs::for('assignments.create', function (BreadcrumbTrail $trail, $class) {
     $trail->parent('home');
     $trail->push($class->name, route('classes.show', $class));
-    $trail->push('Create Assignment', route('classes.assignments.create', $class));
+    $trail->push('Create Assessment', route('classes.assignments.create', $class));
 });
 
 // Assignments > Edit
