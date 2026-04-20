@@ -37,15 +37,7 @@
                     @foreach ($classes as $class)
                         <li class="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl">
                             <a href="{{ route('classes.show', $class) }}" class="relative block overflow-hidden">
-                                @php
-                                    $isUrl = filter_var($class->thumbnail_img, FILTER_VALIDATE_URL);
-                                    if (empty($class->thumbnail_img)) {
-                                        $class->thumbnail_img = "https://via.placeholder.com/374x210/1E293B/FFFFFF?text=$class->name";
-                                    } else {
-                                        $class->thumbnail_img = $isUrl ? $class->thumbnail_img : url('storage/' . substr($class->thumbnail_img, 6));
-                                    }
-                                @endphp
-                                <img src="{{ $class->thumbnail_img }}" alt="{{ $class->name }}" class="aspect-[16/9] w-full object-cover">
+                                <img src="{{ $class->thumbnail_img_url }}" alt="{{ $class->name }}" class="aspect-[16/9] w-full object-cover">
                                 <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-900/60 via-slate-900/20 to-transparent opacity-90"></div>
                                 <span class="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold tracking-wide text-slate-700 shadow-sm">
                                     {{ __('Class') }}

@@ -27,7 +27,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="bg-center bg-no-repeat bg-cover rounded-xl "
-                        style="background-image: url({{ $courseClass->thumbnail_img}}); position:relative; ">
+                        style="background-image: url('{{ $courseClass->thumbnail_img_url }}'); position:relative; ">
                         <div class="py-32 px-5 text-neutral-content align-text-center">
                             <div class="max-w-md ">
                                 <h1 class=" text-5xl font-bold" style="position:absolute; bottom:12px; left:15px;">
