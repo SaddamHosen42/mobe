@@ -5,6 +5,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
+        <!-- PWA Configuration -->
+        <link rel="manifest" href="/manifest.json">
+        <meta name="theme-color" content="#ffffff">
+        <link rel="apple-touch-icon" href="/mobe.svg">
+
         <title>@yield('pageTitle') | {{ config('app.name', 'HSTU-OBE') }}</title>
 
         <!-- Fonts -->
@@ -35,5 +40,17 @@
 
         {{-- Global Delete Confirmation Modal --}}
         <x-delete-confirm-modal />
+
+        <script>
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                    navigator.serviceWorker.register('/sw.js').then(function(registration) {
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    }, function(err) {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+                });
+            }
+        </script>
     </body>
 </html>

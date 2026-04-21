@@ -1,0 +1,17 @@
+{
+  "name": "HSTU OBE System",
+  "short_name": "OBE System",
+  "description": "Outcome Based Education System for HSTU",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/mobe.svg",
+      "type": "image/svg+xml",
+      "sizes": "192x192 512x512 any",
+      "purpose": "any maskable"
+    }
+  ]
+}
