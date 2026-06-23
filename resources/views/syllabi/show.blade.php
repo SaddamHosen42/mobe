@@ -21,7 +21,7 @@ $assignmentPlans = $syllabus->assignmentPlans;
     </x-slot>
 
     <div class="max-w-7xl mx-auto sm:px-6 pb-6 lg:px-8">
-        {!! Gate::allows('is-teacher') || Gate::allows('is-admin') ? Breadcrumbs::render('syllabi.show', $syllabus): "<br/>";  !!}
+        {!! Gate::allows('is-teacher') || Gate::allows('is-admin') ? Breadcrumbs::render('syllabi.show', $syllabus): "<br/>"  !!};
         <div class="flex flex-row justify-between mb-3 sm:px-0 -mr-2 sm:-mr-3">
             <h2 class="text-xl font-extrabold px-2 py-1">
                 Basic Information
