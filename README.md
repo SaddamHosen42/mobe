@@ -1,9 +1,3 @@
-<p align="center">
-  <a href="https://github.com/andrisan/mobe">
-    <img src="mobe.svg" alt="HSTU-OBE logo" width="220" />
-  </a>
-</p>
-
 # HSTU-OBE
 
 HSTU-OBE is a web application for managing student grades using Outcome Based Education (OBE) principles.
