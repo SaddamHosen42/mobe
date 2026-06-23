@@ -1,91 +1,160 @@
 <p align="center">
   <a href="https://github.com/andrisan/mobe">
-    <img src="mobe.svg" width="400" alt="Logo" width="80" height="80">
+    <img src="mobe.svg" alt="HSTU-OBE logo" width="220" />
   </a>
-  <h1 align="center" style="color: rgb(129, 140, 248">mobe</h1>
-  <p align="center">
-    mobe is web-based application for the management of student grades based on the OBE (Outcome Based Education) system.
-  </p>
 </p>
 
-# Getting Started
+# HSTU-OBE
+
+HSTU-OBE is a web application for managing student grades using Outcome Based Education (OBE) principles.
+
+## Table of contents
+
+- [Prerequisites](#prerequisites)
+- [Quick Setup (Development)](#quick-setup-development)
+- [Running the App](#running-the-app)
+- [Desktop Mode (NativePHP)](#desktop-mode-nativephp)
+- [Migrations & Important Notes](#migrations--important-notes)
+- [Testing](#testing)
+- [Troubleshooting](#troubleshooting)
+- [Contributing](#contributing)
 
 ## Prerequisites
-You will need the following to run mobe:
+
 - PHP >= 8.1
 - Composer
-- Node.js
-- NPM
-- Database server (MySQL, MariaDB, PostgreSQL, or SQLite)
+- Node.js (LTS recommended)
+- npm (or yarn)
+- A supported database server: MySQL, MariaDB, PostgreSQL, or SQLite
 
-## Installation
+## Quick Setup (Development)
 
-The following steps will guide you through the installation process of mobe for running in a development environment locally on your machine:
-1. Clone the latest version of mobe from the repository 
-2. Run `composer install` to install the required PHP dependencies
-3. Copy the .env.example file to .env and edit the database credentials according to your database server
-4. Run `php artisan key:generate` to generate a new application key
-5. Run `php artisan migrate --seed` to create and seed the database
-6. Run `php artisan storage:link` to expose uploaded files at `/storage`
+1. Clone the repository and change into the project directory:
 
-## Running on Another Device (Important)
+```bash
+git clone https://github.com/andrisan/mobe.git
+cd HSTU-OBE
+```
 
-When you move this project to another laptop/PC, use this checklist to get the same behavior (including successful delete of seeded data from admin).
+2. Install PHP dependencies:
 
-1. Pull the latest project code.
-2. Install backend dependencies:
-  - `composer install`
+```bash
+composer install
+```
+
 3. Install frontend dependencies:
-  - `npm install`
-4. Create and configure environment file:
-  - Copy `.env.example` to `.env`
-  - Set DB connection values (`DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`)
-5. Generate app key:
-  - `php artisan key:generate`
-6. Apply all migrations (this is required for the delete fix):
-  - New database: `php artisan migrate --seed`
-  - Existing database: `php artisan migrate`
-7. Verify migration status:
-  - `php artisan migrate:status`
-  - Make sure these migrations are `Ran`:
-    - `2026_03_15_000001_add_cascade_deletes`
-    - `2026_03_15_000002_add_cascade_deletes_faculty_department_studyprogram`
-    - `2026_03_15_000003_add_cascade_deletes_user_references`
 
-If those migrations are pending, delete operations can fail with foreign key errors on seeded data.
+```bash
+npm install
+```
 
-### Optional checks (if app does not load correctly)
-- If you see Vite manifest errors, run:
-  - `npm run dev` (development) or `npm run build` (production-like test)
-- On some Windows setups, if `php artisan serve` has listen/reload issues, use:
-  - `php artisan serve --no-reload --host=127.0.0.1 --port=8000`
+4. Copy environment example and set database credentials:
 
-## Run as Web App
+```bash
+cp .env.example .env
+# edit .env: DB_HOST, DB_PORT, DB_DATABASE, DB_USERNAME, DB_PASSWORD
+php artisan key:generate
+```
 
-1. Open terminal 1 and run:
-  - `php artisan serve`
-2. Open terminal 2 and run:
-  - `npm install`
-  - `npm run dev`
-3. Open your browser at:
-  - `http://localhost:8000`
+5. Run database migrations (and seed on a new database):
 
-## Run as Desktop App (NativePHP)
+```bash
+# New database
+php artisan migrate --seed
 
-1. Make sure MySQL is running and your `.env` database credentials are correct.
-2. Run:
-  - `composer native:dev`
-3. The desktop window should open automatically.
+# If connecting to an existing database
+php artisan migrate
+```
 
-### Notes for Desktop Mode
-- Desktop mode is configured to use the project MySQL database.
-- Stop the desktop app with `Ctrl + C` in the terminal.
-- If dependencies were updated and desktop runtime breaks, run `composer install` again and retry `composer native:dev`.
+6. Create a public storage link:
 
-# Contributing
+```bash
+php artisan storage:link
+```
 
-mobe is an open-source project and contributions are welcome. If you would like to contribute, please read the [contributing guidelines](CONTRIBUTING.md) first.
+## Running the App
 
-# License
+Development (browser + asset hot-reload):
 
-mobe is open-sourced software licensed under the [MIT license](LICENSE).
+```bash
+# Terminal 1: start backend
+php artisan serve --host=127.0.0.1 --port=8000
+
+# Terminal 2: start frontend dev server (Vite)
+npm run dev
+
+# Open http://localhost:8000
+```
+
+If you prefer a production-like build for frontend assets:
+
+```bash
+npm run build
+```
+
+## Desktop Mode (NativePHP)
+
+This project supports a desktop runtime via NativePHP.
+
+```bash
+# Ensure your DB is running and .env is configured
+composer native:dev
+```
+
+Notes:
+- Desktop mode uses the same MySQL database configured in `.env`.
+- Stop the desktop app with `Ctrl+C` in the terminal.
+
+## Migrations & Important Notes
+
+After moving the project to another machine, make sure these migrations have run. If they are pending, seeded-data deletes can fail due to foreign key constraints.
+
+- `2026_03_15_000001_add_cascade_deletes`
+- `2026_03_15_000002_add_cascade_deletes_faculty_department_studyprogram`
+- `2026_03_15_000003_add_cascade_deletes_user_references`
+
+Check migration status with:
+
+```bash
+php artisan migrate:status
+```
+
+If migrations are pending, run `php artisan migrate` or `php artisan migrate --seed` for a fresh DB.
+
+## Testing
+
+Run PHP unit tests with:
+
+```bash
+./vendor/bin/phpunit
+```
+
+Or using the `php` helper:
+
+```bash
+php artisan test
+```
+
+## Troubleshooting
+
+- Vite manifest errors: ensure `npm run dev` is running during development, or run `npm run build` for a production-like test.
+- On some Windows setups `php artisan serve` may have reload/listen issues — try:
+
+```bash
+php artisan serve --no-reload --host=127.0.0.1 --port=8000
+```
+
+- If you encounter foreign-key errors when deleting seeded data, confirm the cascade-delete migrations listed above have been applied.
+
+## Contributing
+
+Contributions are welcome. Please read the contributing guidelines before opening issues or pull requests: [CONTRIBUTING.md](CONTRIBUTING.md)
+
+---
+
+If you'd like, I can also:
+
+- add a small `DEV_NOTES.md` with platform-specific tips
+- run `composer install` / `npm install` here and verify a dev run
+
+Tell me which you'd like next.
